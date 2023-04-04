@@ -71,6 +71,28 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return View(model);
             }
         }
+
+        //Get Method Product Types Details
+        public IActionResult Details(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ProductType = _db.ProductTypes.FirstOrDefault(e => e.Id == id);
+            if (ProductType == null)
+            {
+                return NotFound();
+            }
+            return View(ProductType);
+        }
+        //Post Method Details 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  IActionResult Details(ProductTypes model)
+        {
+            return RedirectToAction(nameof(Index));
+        }
         //Delete Product Types
         public IActionResult Delete(int id)
         {
