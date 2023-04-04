@@ -1,11 +1,10 @@
 ﻿@model OnlineShop.Models.ProductTypes
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Edit</h1>
-
-<form asp-action="Edit" method="post">
+<h2 class="text-info">Delete Product Type</h2>
+<form asp-action="Delete" method="post">
     <div class="p-4 rounded border">
         <div asp-validation-summary="ModelOnly" class="text-danger">
 
@@ -18,9 +17,8 @@
                 <input type="text" asp-for="ProductType" class="form-control" placeholder="Enter product type" />
             </div> 
         </div>
-         <span asp-validation-for="ProductType" class="text-danger"></span>
             <div class="form-group">
-                <input type="submit" value="Upadate" class="btn btn-sm btn-primary" />
+                <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
                 <a class="btn btn-sm btn-success m-2" asp-controller="ProductTypes" asp-action="Index">BackTo List</a>
             </div>
     </div>
@@ -31,3 +29,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+

@@ -93,14 +93,42 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             return RedirectToAction(nameof(Index));
         }
-        //Delete Product Types
-        public IActionResult Delete(int id)
-        {
-            var del = _db.ProductTypes.SingleOrDefault(u => u.Id == id);
-            _db.ProductTypes.Remove(del);
-            _db.SaveChanges();
-            return RedirectToAction(nameof(Index));
 
+
+        //Delete Product Types
+        public IActionResult Delete(int? id, ProductTypes model)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            if(id != model.Id)
+            {
+
+            }
+            var ProductType = _db.ProductTypes.FirstOrDefault(e => e.Id == id);
+            if (ProductType == null)
+            {
+                return NotFound();
+            }
+            return View(ProductType);
+        }
+
+        //Post Method Delete 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(ProductTypes model)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ProductTypes.Remove(model);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
     }
