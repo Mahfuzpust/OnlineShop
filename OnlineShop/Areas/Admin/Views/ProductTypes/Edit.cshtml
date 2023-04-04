@@ -1,12 +1,11 @@
 ﻿@model OnlineShop.Models.ProductTypes
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
+<h1>Edit</h1>
 
-
-<h2>Create Product </h2>
-<form asp-action="Create" method="post">
+<form asp-action="Edit" method="post">
     <div class="p-4 rounded border">
         <div asp-validation-summary="ModelOnly" class="text-danger">
 
@@ -21,15 +20,8 @@
         </div>
          <span asp-validation-for="ProductType" class="text-danger"></span>
             <div class="form-group">
-                <input type="submit" value="save" class="btn btn-sm btn-primary" />
+                <input type="submit" value="Upadate" class="btn btn-sm btn-primary" />
                 <a class="btn btn-sm btn-success m-2" asp-controller="ProductTypes" asp-action="Index">BackTo List</a>
             </div>
     </div>
 </form>
-
-@section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
-

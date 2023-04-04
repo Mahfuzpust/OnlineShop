@@ -40,6 +40,46 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return View(model);
             }
         }
-        
+
+        //Get Method Product Types Edit
+        public IActionResult Edit(int id)
+        {
+            if (id==null)
+            {
+                return NotFound();
+            }
+            var ProductType = _db.ProductTypes.FirstOrDefault(e=> e.Id == id); 
+            if (ProductType==null)
+            {
+                return NotFound();
+            }
+            return View(ProductType);
+        }
+        //Post Method Edit 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ProductTypes model)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ProductTypes.Update(model);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+        //Delete Product Types
+        public IActionResult Delete(int id)
+        {
+            var del = _db.ProductTypes.SingleOrDefault(u => u.Id == id);
+            _db.ProductTypes.Remove(del);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Index));
+
+        }
+
     }
 }
