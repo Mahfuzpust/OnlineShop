@@ -33,6 +33,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.ProductTypes.Add(model);
                 await _db.SaveChangesAsync();
+                TempData["Save"] = "Product save successfully";
                 return RedirectToAction(nameof(Index));
             }
             else
@@ -42,7 +43,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //Get Method Product Types Edit
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
             if (id==null)
             {
@@ -64,6 +65,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.ProductTypes.Update(model);
                 await _db.SaveChangesAsync();
+                TempData["update"] = "product updated";
                 return RedirectToAction(nameof(Index));
             }
             else
@@ -73,7 +75,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //Get Method Product Types Details
-        public IActionResult Details(int id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -123,6 +125,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.ProductTypes.Remove(model);
                 await _db.SaveChangesAsync();
+                TempData["delete"] = "Product deleted";
                 return RedirectToAction(nameof(Index));
             }
             else

@@ -31,6 +31,37 @@
     </div>
 </div>
 
+@section scripts{
+
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var save = '@TempData["Save"]'
+            if(save != null){
+               alertify.success(save);
+            }
+        }); 
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            var update = '@TempData["update"]'
+            if (update != null) {
+                alertify.success(update);
+            }
+        }); 
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            var delete = '@TempData["delete"]'
+            if (delete != null) {
+                alertify.success(delete);
+            }
+        }); 
+    </script>
+}      
+
 @*<div class="container">
     <div class="row">
         <div class="col-8 offset-2">
