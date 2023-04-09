@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OnlineShop.Models.SpecialTag>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>This is Special Tag</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-3">
+            <h2 class="text-primary text-center">Special Tag Form</h2>
+            <a class="btn btn-sm btn-primary m-2" asp-controller="SpecialTag" asp-action="Create"><i class="fa-sharp fa-solid fa-plus"></i>Add new tag</a>
+            <table class="table table-success">
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>SpecialTage</th>
+                    <th></th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach(var data in Model)
+                {
+                    <tr class="text-center">
+                        <td>@data.Id</td>
+                        <td>@data.SpeciaTag</td>
+                        <td>
+                            <partial name="_ButtonPartialtag" model="@data.Id" />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
